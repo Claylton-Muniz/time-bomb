@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=4 uid="uid://m52rt25fdqqc"]
+
+[ext_resource type="TileSet" uid="uid://cm1cvxgl0wd0b" path="res://resources/floor.tres" id="1_3sfvn"]
+[ext_resource type="TileSet" uid="uid://dmutnjg2rngf7" path="res://resources/decoration.tres" id="2_cj0wq"]
+[ext_resource type="PackedScene" uid="uid://dipl6qfqxsmeu" path="res://scenes/background.tscn" id="82_5qilh"]
+
+[node name="LevelDesign" type="Node2D"]
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAALAAsAEAAAAAAAAAALAAoADAAAAAAAAAALAAkABwAAAAAAAAAKAAsABAAAAAAAAAAKAAoAAQAAAAAAAAAKAAkAFgAAAAAAAAAJAAsABAAAAAAAAAAJAAoAAQAAAAAAAAAJAAkAFgAAAAAAAAAIAAsABAAAAAAAAAAIAAoAAQAAAAAAAAAIAAkAFgAAAAAAAAAHAAsABAAAAAAAAAAHAAoAAQAAAAAAAAAHAAkAFgAAAAAAAAAGAAsABAAAAAAAAAAGAAoAAQAAAAAAAAAGAAkAFgAAAAAAAAAFAAsABAAAAAAAAAAFAAoAAQAAAAAAAAAFAAkAFgAAAAAAAAAEAAsABAAAAAAAAAAEAAoAAQAAAAAAAAAEAAkAFgAAAAAAAAADAAsABAAAAAAAAAADAAoAAQAAAAAAAAADAAkAFgAAAAAAAAACAAsABAAAAAAAAAACAAoAAQAAAAAAAAACAAkAFgAAAAAAAAABAAsABAAAAAAAAAABAAoAAQAAAAAAAAABAAkAFgAAAAAAAAAAAAsABAAAAAAAAAAAAAoAAQAAAAAAAAAAAAkAFgAAAAAAAAD//wsADwAAAAAAAAD//woADgAAAAAAAAD//wkABgAAAAAAAAA=")
+tile_set = ExtResource("1_3sfvn")
+
+[node name="Decoration" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_cj0wq")
+
+[node name="Background" parent="." instance=ExtResource("82_5qilh")]
