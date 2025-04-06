@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbc3taih4ymar"
-path="res://.godot/imported/Cyborg_doublejump.png-c69521a5540282aec375fef0db84c0c1.ctex"
+uid="uid://bqy5t2qstq7jl"
+path="res://.godot/imported/Biker_hurt.png-a6b72565256cd544dc3d3be142136db7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Cyborg_doublejump.png"
-dest_files=["res://.godot/imported/Cyborg_doublejump.png-c69521a5540282aec375fef0db84c0c1.ctex"]
+source_file="res://assets/player/Biker_hurt.png"
+dest_files=["res://.godot/imported/Biker_hurt.png-a6b72565256cd544dc3d3be142136db7.ctex"]
 
 [params]
 

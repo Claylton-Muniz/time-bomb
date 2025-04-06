@@ -12,8 +12,6 @@
 
 [node name="Background" type="ParallaxBackground"]
 script = ExtResource("1_y0hdb")
-canProcess = true
-layer_speed = PackedInt32Array(0, 0, 0, 0, 0, 120, 0, 0, 0)
 
 [node name="Layer1" type="ParallaxLayer" parent="."]
 motion_mirroring = Vector2(576, 0)
@@ -24,6 +22,7 @@ offset_bottom = 324.0
 texture = ExtResource("1_8efq7")
 
 [node name="Layer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 1)
 motion_mirroring = Vector2(576, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Layer2"]
@@ -32,6 +31,7 @@ offset_bottom = 324.0
 texture = ExtResource("3_b6e46")
 
 [node name="Layer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 1)
 motion_mirroring = Vector2(576, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Layer3"]
@@ -40,6 +40,7 @@ offset_bottom = 324.0
 texture = ExtResource("4_td6w2")
 
 [node name="Layer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 1)
 motion_mirroring = Vector2(576, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Layer4"]
@@ -48,6 +49,7 @@ offset_bottom = 324.0
 texture = ExtResource("5_r2thq")
 
 [node name="Layer5" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 1)
 motion_mirroring = Vector2(576, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Layer5"]
@@ -56,7 +58,6 @@ offset_bottom = 324.0
 texture = ExtResource("6_0470j")
 
 [node name="Layer6" type="ParallaxLayer" parent="."]
-z_index = 1
 motion_mirroring = Vector2(576, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Layer6"]
@@ -65,6 +66,7 @@ offset_bottom = 324.0
 texture = ExtResource("7_ivgg2")
 
 [node name="Layer7" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 1)
 motion_mirroring = Vector2(576, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Layer7"]
@@ -73,6 +75,7 @@ offset_bottom = 324.0
 texture = ExtResource("8_r4ipc")
 
 [node name="Layer8" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 1)
 motion_mirroring = Vector2(576, 0)
 
 [node name="TextureRect" type="TextureRect" parent="Layer8"]

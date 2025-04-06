@@ -4,7 +4,7 @@ using System;
 public partial class Background : ParallaxBackground
 {
 	[Export] private bool canProcess;
-	[Export] private int[] layer_speed = new int[8];
+	[Export] private int layer_speed;
 
 	private ParallaxLayer layer;
 
@@ -22,7 +22,7 @@ public partial class Background : ParallaxBackground
 	public override void _PhysicsProcess(double delta)
 	{
 		layer.MotionOffset = new Vector2(
-				layer.MotionOffset.X + (float)(delta * layer_speed[5]), layer.MotionOffset.Y
+				layer.MotionOffset.X + (float)(delta * layer_speed), layer.MotionOffset.Y
 			);
 	}
 

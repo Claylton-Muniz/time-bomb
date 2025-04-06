@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://o0nb62k4nknk"]
+
+[ext_resource type="Script" uid="uid://ddqk0yaoodh00" path="res://scripts/management/FallZone.cs" id="1_yc6rq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv1w4"]
+
+[node name="FallZone" type="Area2D"]
+script = ExtResource("1_yc6rq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jv1w4")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

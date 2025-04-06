@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m3a6m1dh7b4i"
-path="res://.godot/imported/Cyborg_climb.png-4d9c7439923edb87b873360bd87933ba.ctex"
+uid="uid://dc2byrwsk1pr5"
+path="res://.godot/imported/Biker_run.png-7473014db3c5eeb770ae80a67961f877.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Cyborg_climb.png"
-dest_files=["res://.godot/imported/Cyborg_climb.png-4d9c7439923edb87b873360bd87933ba.ctex"]
+source_file="res://assets/player/Biker_run.png"
+dest_files=["res://.godot/imported/Biker_run.png-7473014db3c5eeb770ae80a67961f877.ctex"]
 
 [params]
 

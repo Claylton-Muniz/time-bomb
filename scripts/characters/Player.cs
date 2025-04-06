@@ -8,6 +8,9 @@ public partial class Player : CharacterBody2D
 
 	private PlayerTexture playerSprite;
 
+	public bool onHit = false;
+	public bool death = false;
+
 	public override void _Ready()
 	{
 		playerSprite = GetNode<PlayerTexture>("Texture");
@@ -25,24 +28,35 @@ public partial class Player : CharacterBody2D
 
 		// Handle Jump.
 		if (
-			Input.IsActionJustPressed("ui_accept") ||
-			Input.IsActionJustPressed("up_button") &&
+			(Input.IsActionJustPressed("ui_accept") ||
+			Input.IsActionJustPressed("up_button")) &&
 			IsOnFloor()
 			)
 		{
 			velocity.Y = JumpVelocity;
 		}
 
+		// Handle hit
+		if (onHit && !death)
+		{
+			death = true;
+			velocity.Y = JumpVelocity / 2;
+			velocity.X = Speed / -4;
+		}
+
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("left_button", "right_button", "up_button", "down_button");
-		if (direction != Vector2.Zero)
+		if (!onHit)
 		{
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			Vector2 direction = Input.GetVector("left_button", "right_button", "up_button", "down_button");
+			if (direction != Vector2.Zero)
+			{
+				velocity.X = direction.X * Speed;
+			}
+			else
+			{
+				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			}
 		}
 
 		Velocity = velocity;

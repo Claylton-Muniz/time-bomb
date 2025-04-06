@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tnf8dqvhau64"
-path="res://.godot/imported/Cyborg_attack3.png-3ba9845099d9e67b01f4b015e8b6c5b9.ctex"
+uid="uid://bx1xet3byv4ix"
+path="res://.godot/imported/Biker_punch.png-9769cac1fa636da0665cbb3518a7d513.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Cyborg_attack3.png"
-dest_files=["res://.godot/imported/Cyborg_attack3.png-3ba9845099d9e67b01f4b015e8b6c5b9.ctex"]
+source_file="res://assets/player/Biker_punch.png"
+dest_files=["res://.godot/imported/Biker_punch.png-9769cac1fa636da0665cbb3518a7d513.ctex"]
 
 [params]
 
