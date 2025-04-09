@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dsuml2u8off8p"]
+[gd_scene load_steps=37 format=3 uid="uid://dsuml2u8off8p"]
 
 [ext_resource type="Script" uid="uid://dkt7yry1ohjx2" path="res://scripts/characters/Player.cs" id="1_yewv4"]
 [ext_resource type="Texture2D" uid="uid://b3rerajx5b4fc" path="res://assets/player/Biker_idle.png" id="2_atpat"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d31004m427rcy" path="res://scripts/characters/PlayerTexture.cs" id="3_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b2ofhx1y70hmr" path="res://assets/player/Biker_jump.png" id="3_kqtwu"]
 [ext_resource type="Texture2D" uid="uid://dc2byrwsk1pr5" path="res://assets/player/Biker_run.png" id="4_6eyoc"]
+[ext_resource type="Script" uid="uid://7y4ehfp3mr3n" path="res://scripts/management/MouseClick.cs" id="7_6eyoc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i13yi"]
 radius = 9.0
@@ -328,6 +329,8 @@ _data = {
 &"run": SubResource("Animation_xhtjm")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eojnx"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yewv4")
 
@@ -351,8 +354,16 @@ libraries = {
 zoom = Vector2(1.7, 1.7)
 limit_left = 0
 limit_top = 0
+limit_right = 1568
 limit_bottom = 324
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+script = ExtResource("7_6eyoc")
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D"]
+shape = SubResource("RectangleShape2D_eojnx")
+debug_color = Color(0.968247, 0.378015, 0.366876, 0.42)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="Texture" method="_on_animation_finished"]

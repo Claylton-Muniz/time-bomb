@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=4 uid="uid://m52rt25fdqqc"]
+[gd_scene load_steps=97 format=4 uid="uid://m52rt25fdqqc"]
 
 [ext_resource type="TileSet" uid="uid://cm1cvxgl0wd0b" path="res://resources/tile/floor.tres" id="1_qchlw"]
 [ext_resource type="Script" uid="uid://fqqnamq43ucx" path="res://scripts/management/LevelDesign.cs" id="1_qmplq"]
@@ -231,6 +231,9 @@ sources/44 = SubResource("TileSetAtlasSource_alewy")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8y74u"]
 size = Vector2(96, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jn2pd"]
+size = Vector2(20, 288)
+
 [node name="LevelDesign" type="Node2D"]
 script = ExtResource("1_qmplq")
 
@@ -255,5 +258,17 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" parent="FallZone" index="0"]
 shape = SubResource("RectangleShape2D_8y74u")
+
+[node name="InvisibleWall1" type="StaticBody2D" parent="."]
+position = Vector2(-10, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall1"]
+shape = SubResource("RectangleShape2D_jn2pd")
+
+[node name="InvisibleWall2" type="StaticBody2D" parent="."]
+position = Vector2(1578, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall2"]
+shape = SubResource("RectangleShape2D_jn2pd")
 
 [editable path="FallZone"]
