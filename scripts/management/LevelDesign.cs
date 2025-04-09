@@ -6,6 +6,7 @@ public partial class LevelDesign : Node2D
 	private Player player;
 	private PlayerTexture playerTexture;
 	private PackedScene timeZoneScene;
+	private Node2D currentTimeZone = null;
 
 	public override void _Ready()
 	{
@@ -14,24 +15,28 @@ public partial class LevelDesign : Node2D
 		timeZoneScene = GD.Load<PackedScene>("res://scenes/effect/time_zone.tscn");
 
 		playerTexture.OnGameOver += OnGameOver;
-
 	}
 
 	public override void _Input(InputEvent @event)
 	{
-		// Detecta clique com botão esquerdo do mouse
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
 		{
-			// Pega posição global do mouse no mundo 2D
+			if (currentTimeZone != null) return; // Já tem uma ativa
+
 			Vector2 clickPosition = GetGlobalMousePosition();
 			GD.Print("Clique detectado em: " + clickPosition);
 
-			// Instancia a cena
-			Node2D timeZoneInstance = (Node2D)timeZoneScene.Instantiate();
-			timeZoneInstance.GlobalPosition = clickPosition;
+			currentTimeZone = (Node2D)timeZoneScene.Instantiate();
+			currentTimeZone.GlobalPosition = clickPosition;
+			AddChild(currentTimeZone);
 
-			// Adiciona à cena atual
-			AddChild(timeZoneInstance);
+			// Espera 5 segundos e destrói
+			GetTree().CreateTimer(3.0f).Timeout += () =>
+			{
+				if (IsInstanceValid(currentTimeZone))
+					currentTimeZone.QueueFree();
+				currentTimeZone = null;
+			};
 		}
 	}
 

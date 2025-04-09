@@ -3,9 +3,8 @@ using System;
 
 public partial class TimeZone : Area2D
 {
-	private float memSpeed;
+	private float slowSpeed = 500.0f;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		this.BodyEntered += OnBodyEntered;
@@ -16,13 +15,17 @@ public partial class TimeZone : Area2D
 	{
 		if (body is Player player)
 		{
-			memSpeed = player.Speed;
-			player.Speed = 500.0f;
+			player.targetSpeed = slowSpeed;
+			player.boostGravity = 1.5f;
 		}
 	}
 
 	private void OnBodyExited(Node2D body)
 	{
-		if (body is Player player) player.Speed = memSpeed;
+		if (body is Player player)
+		{
+			player.targetSpeed = player.defaultSpeed;
+			player.boostGravity = 1.0f;
+		}
 	}
 }
