@@ -30,7 +30,7 @@ public partial class LevelDesign : Node2D
 			currentTimeZone.GlobalPosition = clickPosition;
 			AddChild(currentTimeZone);
 
-			// Espera 5 segundos e destrói
+			// Espera 3 segundos e destrói
 			GetTree().CreateTimer(3.0f).Timeout += () =>
 			{
 				if (IsInstanceValid(currentTimeZone))
