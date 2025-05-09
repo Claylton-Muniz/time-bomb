@@ -1,14 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://dipl6qfqxsmeu"]
+[gd_scene load_steps=10 format=3 uid="uid://dipl6qfqxsmeu"]
 
 [ext_resource type="Texture2D" uid="uid://cww7vsx2r62ct" path="res://assets/tile/parallax_background/1.png" id="1_8efq7"]
+[ext_resource type="Script" uid="uid://blo0ggd2h5ebr" path="res://scripts/world/background.gd" id="1_y0hdb"]
 [ext_resource type="Texture2D" uid="uid://bf8vtp8dgyok5" path="res://assets/tile/parallax_background/3.png" id="3_b6e46"]
 [ext_resource type="Texture2D" uid="uid://6qn8edyd2ymi" path="res://assets/tile/parallax_background/4.png" id="4_td6w2"]
 [ext_resource type="Texture2D" uid="uid://cftvtob4vrlqr" path="res://assets/tile/parallax_background/5.png" id="5_r2thq"]
 [ext_resource type="Texture2D" uid="uid://ckksf8qhu3qkg" path="res://assets/tile/parallax_background/6.png" id="6_0470j"]
+[ext_resource type="Texture2D" uid="uid://c5b8y87ywct41" path="res://assets/tile/parallax_background/7.png" id="7_ivgg2"]
 [ext_resource type="Texture2D" uid="uid://dyjyjewwm6th" path="res://assets/tile/parallax_background/8.png" id="8_r4ipc"]
 [ext_resource type="Texture2D" uid="uid://c8pyo3e0qvnny" path="res://assets/tile/parallax_background/9.png" id="9_5xduy"]
 
 [node name="Background" type="ParallaxBackground"]
+script = ExtResource("1_y0hdb")
 
 [node name="Layer1" type="ParallaxLayer" parent="."]
 motion_mirroring = Vector2(576, 0)
@@ -53,6 +56,14 @@ motion_mirroring = Vector2(576, 0)
 offset_right = 576.0
 offset_bottom = 324.0
 texture = ExtResource("6_0470j")
+
+[node name="Layer6" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(576, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Layer6"]
+offset_right = 576.0
+offset_bottom = 324.0
+texture = ExtResource("7_ivgg2")
 
 [node name="Layer7" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.6, 1)
