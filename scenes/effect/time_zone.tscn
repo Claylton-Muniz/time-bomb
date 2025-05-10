@@ -1,5 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://c00fmms2g6bot"]
+[gd_scene load_steps=27 format=3 uid="uid://c00fmms2g6bot"]
 
+[ext_resource type="Script" uid="uid://c01xy4j8gat3d" path="res://scenes/effect/time_zone.gd" id="1_o5r6a"]
 [ext_resource type="Texture2D" uid="uid://bjuw87lj1lvjy" path="res://assets/effect/time_zone/portal.png" id="1_t044m"]
 [ext_resource type="Script" uid="uid://drv03iy6euswf" path="res://scripts/animations/texture_time_zone.gd" id="2_5vj2o"]
 
@@ -171,6 +172,7 @@ animations = [{
 }]
 
 [node name="TimeZone" type="Area2D"]
+script = ExtResource("1_o5r6a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3.955, 3.955)
@@ -180,5 +182,9 @@ shape = SubResource("CircleShape2D_5vj2o")
 modulate = Color(1, 1, 1, 0.337255)
 scale = Vector2(0.49, 0.49)
 sprite_frames = SubResource("SpriteFrames_xhqxw")
-animation = &"close"
+animation = &"run"
+frame_progress = 0.710858
 script = ExtResource("2_5vj2o")
+
+[connection signal="body_entered" from="." to="." method="_on_time_zone_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_time_zone_body_exited"]
