@@ -1,0 +1,104 @@
+[gd_scene load_steps=17 format=3 uid="uid://3i80cj1q6k65"]
+
+[ext_resource type="PackedScene" uid="uid://bvjm2ahssckyc" path="res://scenes/effect/wallzone.tscn" id="1_4jhog"]
+[ext_resource type="Script" path="res://scripts/world/level_design.gd" id="1_v3up1"]
+[ext_resource type="PackedScene" uid="uid://123vgmaa0cel" path="res://scenes/characters/player.tscn" id="2_bomcf"]
+[ext_resource type="TileSet" uid="uid://cm1cvxgl0wd0b" path="res://resources/tile/floor.tres" id="3_tsyuo"]
+[ext_resource type="PackedScene" uid="uid://dipl6qfqxsmeu" path="res://scenes/world/background.tscn" id="4_f61n3"]
+[ext_resource type="Texture2D" uid="uid://bjuw87lj1lvjy" path="res://assets/effect/time_zone/portal.png" id="4_y6nts"]
+[ext_resource type="PackedScene" uid="uid://c60x1wx1skqpc" path="res://scenes/prefabs/moving_platform.tscn" id="5_bd8m7"]
+[ext_resource type="PackedScene" uid="uid://cm4v6mvn7olkq" path="res://scenes/effect/fall_zone.tscn" id="5_w4y1q"]
+[ext_resource type="PackedScene" uid="uid://bimk0reb4u3uw" path="res://scenes/prefabs/vase_tree.tscn" id="8_f5cjl"]
+[ext_resource type="Texture2D" uid="uid://bg0rpkwvw4g3m" path="res://assets/tile/itens/alavanca.png" id="9_i4gh5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1dpc"]
+atlas = ExtResource("4_y6nts")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51rg7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1dpc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8cni"]
+
+[sub_resource type="GDScript" id="GDScript_n1k3i"]
+script/source = "extends Area2D
+
+
+func _on_fallzone_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		body.call_deferred(\"queue_free\")
+		get_tree().call_deferred(\"reload_current_scene\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aswla"]
+size = Vector2(256, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2hen"]
+size = Vector2(384, 20)
+
+[node name="LevelTest" type="Node2D"]
+script = ExtResource("1_v3up1")
+
+[node name="WallZone" parent="." instance=ExtResource("1_4jhog")]
+position = Vector2(-10, -68)
+
+[node name="Player" parent="." instance=ExtResource("2_bomcf")]
+position = Vector2(42, 232)
+
+[node name="Portal" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.929412, 0, 0.172549, 0.741176)
+position = Vector2(1594, 104)
+scale = Vector2(0.26, 0.26)
+sprite_frames = SubResource("SpriteFrames_51rg7")
+
+[node name="Alavanca" type="Area2D" parent="."]
+position = Vector2(1755, 217)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alavanca"]
+position = Vector2(-11, -2)
+shape = SubResource("RectangleShape2D_l8cni")
+
+[node name="Sprite2D" type="Sprite2D" parent="Alavanca"]
+position = Vector2(-11, -2)
+texture = ExtResource("9_i4gh5")
+
+[node name="VaseTree" parent="." instance=ExtResource("8_f5cjl")]
+position = Vector2(1391, 225)
+
+[node name="moving_platform" parent="." instance=ExtResource("5_bd8m7")]
+position = Vector2(826, 256)
+
+[node name="Floor" type="TileMap" parent="."]
+tile_set = ExtResource("3_tsyuo")
+format = 2
+layer_0/tile_data = PackedInt32Array(655370, 16, 0, 589834, 12, 0, 524298, 7, 0, 655369, 4, 0, 589833, 1, 0, 524297, 22, 0, 655368, 4, 0, 589832, 1, 0, 524296, 22, 0, 655367, 4, 0, 589831, 1, 0, 524295, 22, 0, 655366, 4, 0, 589830, 1, 0, 524294, 22, 0, 655365, 4, 0, 589829, 1, 0, 524293, 22, 0, 655364, 4, 0, 589828, 1, 0, 524292, 22, 0, 655363, 4, 0, 589827, 1, 0, 524291, 22, 0, 655362, 4, 0, 589826, 1, 0, 524290, 22, 0, 655361, 4, 0, 589825, 1, 0, 524289, 22, 0, 655360, 15, 0, 589824, 14, 0, 524288, 6, 0, 524307, 6, 0, 655384, 16, 0, 589848, 12, 0, 524312, 7, 0, 655383, 4, 0, 589847, 1, 0, 524311, 22, 0, 655382, 4, 0, 589846, 1, 0, 524310, 22, 0, 655381, 4, 0, 589845, 1, 0, 524309, 22, 0, 655380, 4, 0, 589844, 1, 0, 524308, 22, 0, 655379, 15, 0, 589843, 14, 0, 524325, 6, 0, 655400, 4, 0, 589864, 1, 0, 524328, 22, 0, 655399, 4, 0, 589863, 1, 0, 524327, 22, 0, 655398, 4, 0, 589862, 1, 0, 524326, 22, 0, 655397, 15, 0, 589861, 14, 0, 655403, 4, 0, 589867, 1, 0, 524331, 22, 0, 655402, 4, 0, 589866, 1, 0, 524330, 22, 0, 655401, 4, 0, 589865, 1, 0, 524329, 22, 0, 458798, 1, 0, 393262, 1, 0, 327726, 1, 0, 262190, 22, 0, 458797, 1, 0, 393261, 1, 0, 327725, 1, 0, 262189, 22, 0, 458796, 14, 0, 393260, 14, 0, 327724, 14, 0, 262188, 6, 0, 655406, 4, 0, 589870, 1, 0, 524334, 1, 0, 655405, 4, 0, 589869, 1, 0, 524333, 1, 0, 655404, 4, 0, 589868, 1, 0, 524332, 23, 0, 655411, 4, 0, 589875, 1, 0, 524339, 21, 0, 458803, 12, 0, 393267, 12, 0, 327731, 12, 0, 262195, 7, 0, 655410, 4, 0, 589874, 1, 0, 524338, 1, 0, 458802, 1, 0, 393266, 1, 0, 327730, 1, 0, 262194, 22, 0, 655409, 4, 0, 589873, 1, 0, 524337, 1, 0, 458801, 1, 0, 393265, 1, 0, 327729, 1, 0, 262193, 22, 0, 655408, 4, 0, 589872, 1, 0, 524336, 1, 0, 458800, 1, 0, 393264, 1, 0, 327728, 1, 0, 262192, 22, 0, 655407, 4, 0, 589871, 1, 0, 524335, 1, 0, 458799, 1, 0, 393263, 1, 0, 327727, 1, 0, 262191, 22, 0, 655416, 16, 0, 589880, 12, 0, 524344, 7, 0, 655415, 4, 0, 589879, 1, 0, 524343, 22, 0, 655414, 4, 0, 589878, 1, 0, 524342, 22, 0, 655413, 4, 0, 589877, 1, 0, 524341, 22, 0, 655412, 4, 0, 589876, 1, 0, 524340, 22, 0)
+
+[node name="FallZone" parent="." instance=ExtResource("5_w4y1q")]
+position = Vector2(362, 334)
+script = SubResource("GDScript_n1k3i")
+
+[node name="CollisionShape2D" parent="FallZone" index="0"]
+position = Vector2(118, 0)
+shape = SubResource("RectangleShape2D_aswla")
+
+[node name="FallZone2" parent="." instance=ExtResource("5_w4y1q")]
+position = Vector2(810, 334)
+
+[node name="CollisionShape2D" parent="FallZone2" index="0"]
+position = Vector2(182, 0)
+shape = SubResource("RectangleShape2D_y2hen")
+
+[node name="Background" parent="." instance=ExtResource("4_f61n3")]
+
+[connection signal="body_entered" from="Alavanca" to="." method="_on_alavanca_body_entered"]
+
+[editable path="FallZone"]
+[editable path="FallZone2"]

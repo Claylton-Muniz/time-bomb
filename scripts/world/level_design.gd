@@ -47,5 +47,9 @@ func _input(event: InputEvent) -> void:
 func _on_alavanca_body_entered(body: Node2D) -> void:
 	print(body.name)
 	
-	var alavanca = $Alavanca/Alavanca
+	var alavanca = $Alavanca/Sprite2D
 	alavanca.flip_v = true
+	
+	var portal_sprite = get_node_or_null("Portal") as AnimatedSprite2D
+	if portal_sprite:
+		portal_sprite.modulate = Color("#ffffff")

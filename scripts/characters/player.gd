@@ -9,6 +9,9 @@ var is_decelerating_from_boost: bool = false
 var jump_velocity: float = JUMP_VELOCITY
 var gravity_scale: float = 1.0
 
+var is_waiting_for_rewind: bool = false
+var rewind_start_time: float = 0.0
+
 @onready var default_speed: float = speed # Para armazenar a velocidade original
 @onready var player_sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 
@@ -20,10 +23,28 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += Vector2(0, base_gravity * gravity_scale * delta)
 
+	if Input.is_action_just_pressed("rebobinar_button"):
+		if RewindManager.is_rewinding:
+			# Se já estiver rebobinando, cancela
+			RewindManager.stop_rewind()
+			is_waiting_for_rewind = false
+			print("Rebobinamento cancelado")
+		elif is_waiting_for_rewind:
+			# Segundo clique: calcular o tempo e rebobinar
+			var elapsed_time = Time.get_ticks_msec() / 1000.0 - rewind_start_time
+			RewindManager.rewind_time = clamp(elapsed_time, 0.1, 10.0) # evitar tempo zero e limitar a 10s por exemplo
+			RewindManager.start_rewind()
+			is_waiting_for_rewind = false
+			print("Rebobinando por ", RewindManager.rewind_time, " segundos")
+		elif not RewindManager.is_rewinding:
+			# Primeiro clique: salvar tempo atual
+			rewind_start_time = Time.get_ticks_msec() / 1000.0
+			is_waiting_for_rewind = true
+			print("Início do tempo de rebobinação")
 
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("up_button") and is_on_floor():
+	if (Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("up_button")) and is_on_floor():
 		velocity.y = jump_velocity
 		
 	if is_decelerating_from_boost:
@@ -88,3 +109,8 @@ func apply_physics_scale(scale_factor: float) -> void:
 func reset_physics_scale() -> void:
 	jump_velocity = JUMP_VELOCITY
 	gravity_scale = 1.0
+
+
+func _on_rewind_timeout():
+	is_waiting_for_rewind = false
+	print("Tempo para rebobinar expirou.")

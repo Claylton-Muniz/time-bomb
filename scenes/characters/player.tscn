@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://123vgmaa0cel"]
+[gd_scene load_steps=28 format=3 uid="uid://123vgmaa0cel"]
 
-[ext_resource type="Script" uid="uid://diha6ghch2ynb" path="res://scripts/characters/player.gd" id="1_76oj4"]
+[ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_76oj4"]
 [ext_resource type="Texture2D" uid="uid://b3rerajx5b4fc" path="res://assets/player/Biker_idle.png" id="2_atpat"]
 [ext_resource type="Texture2D" uid="uid://b2ofhx1y70hmr" path="res://assets/player/Biker_jump.png" id="3_atpat"]
 [ext_resource type="Texture2D" uid="uid://dc2byrwsk1pr5" path="res://assets/player/Biker_run.png" id="4_6eyoc"]
-[ext_resource type="Script" uid="uid://bf42s4eukwvkj" path="res://scripts/animations/player_sprite.gd" id="4_dyp2m"]
+[ext_resource type="Script" path="res://scripts/animations/player_sprite.gd" id="4_dyp2m"]
+[ext_resource type="Script" path="res://addons/time_rewind_2d/scripts/TimeRewind.gd" id="6_j8syn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i13yi"]
 size = Vector2(21, 33)
@@ -97,7 +98,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qgnko")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -156,7 +157,6 @@ tracks/1/keys = {
 resource_name = "idle"
 length = 0.5
 loop_mode = 1
-step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -185,7 +185,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_7vyk4"]
 resource_name = "jump"
 length = 0.5
-step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -215,7 +214,6 @@ tracks/1/keys = {
 resource_name = "run"
 length = 0.7
 loop_mode = 1
-step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -243,10 +241,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwimj"]
 _data = {
-&"RESET": SubResource("Animation_2qbry"),
-&"idle": SubResource("Animation_g3ftt"),
-&"jump": SubResource("Animation_7vyk4"),
-&"run": SubResource("Animation_fygvo")
+"RESET": SubResource("Animation_2qbry"),
+"idle": SubResource("Animation_g3ftt"),
+"jump": SubResource("Animation_7vyk4"),
+"run": SubResource("Animation_fygvo")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -260,15 +258,27 @@ shape = SubResource("RectangleShape2D_i13yi")
 sprite_frames = SubResource("SpriteFrames_gtpce")
 animation = &"idle"
 script = ExtResource("4_dyp2m")
-animation_path = NodePath("../AnimationPlayer")
 player_path = NodePath("..")
+
+[node name="TimeRewind2D" type="Node2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("body")]
+script = ExtResource("6_j8syn")
+body = NodePath("..")
+rewindable_properties = Array[String](["animation", "flip_h", "offset"])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_hwimj")
+"": SubResource("AnimationLibrary_hwimj")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
+limit_top = 0
 limit_bottom = 324
 drag_horizontal_enabled = true
+
+[node name="TimeRewind2D" type="Node2D" parent="." node_paths=PackedStringArray("body", "collision_shape")]
+script = ExtResource("6_j8syn")
+body = NodePath("..")
+collision_shape = NodePath("../CollisionShape2D")
+rewind_time = 7.0
+rewindable_properties = Array[String](["global_position", "rotation", "velocity"])

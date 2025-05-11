@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm4v6mvn7olkq"]
 
-[ext_resource type="Script" uid="uid://7w8ylcbfs5fe" path="res://scripts/management/fall_zone.gd" id="1_pxrr4"]
+[ext_resource type="Script" path="res://scripts/management/fall_zone.gd" id="1_pxrr4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pxrr4"]
 

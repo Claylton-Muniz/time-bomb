@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c60x1wx1skqpc"]
 
-[ext_resource type="Script" uid="uid://c0qm6abb6g7gg" path="res://scripts/prefabs/moving_platform.gd" id="1_eo3h3"]
+[ext_resource type="Script" path="res://scripts/prefabs/moving_platform.gd" id="1_eo3h3"]
 [ext_resource type="TileSet" uid="uid://cm1cvxgl0wd0b" path="res://resources/tile/floor.tres" id="2_ud32i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ml4oj"]
@@ -11,9 +11,10 @@ script = ExtResource("1_eo3h3")
 
 [node name="platform" type="AnimatableBody2D" parent="."]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="platform"]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0)
+[node name="Floor" type="TileMap" parent="platform"]
 tile_set = ExtResource("2_ud32i")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 76, 0, 1, 76, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
 position = Vector2(32, 8)
