@@ -6,6 +6,7 @@ class_name TimeZone
 
 
 func _on_time_zone_body_entered(body: Node2D) -> void:
+	print("Entrou: " + body.name)
 	if body.get_parent() is MovingPlatform:
 		print("Entrou: " + body.name)
 		var platform: MovingPlatform = body.get_parent() as MovingPlatform
@@ -32,6 +33,7 @@ func _on_time_zone_body_entered(body: Node2D) -> void:
 			player.apply_physics_scale(speed_boost_factor)
 
 func _on_time_zone_body_exited(body: Node2D) -> void:
+	print("Entrou: " + body.name)
 	if body is Player:
 		var player: Player = body as Player
 		if is_slow_zone:
@@ -46,3 +48,17 @@ func _on_time_zone_body_exited(body: Node2D) -> void:
 		
 		platform.move_speed = 700.0
 		platform.move_platform()
+
+
+func _on_time_zone_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	print("Area entrou: " + area.name)
+	
+	# Exemplo: alterar animação
+	if area.has_node("AnimatedSprite2D"):
+		var sprite = area.get_node("AnimatedSprite2D") as AnimatedSprite2D
+		sprite.play("full") # troque pelo nome da animação desejada
+
+	# Exemplo: ativar colisão de um StaticBody2D dentro da area
+	if area.has_node("StaticBody2D"):
+		var static_body = area.get_node("StaticBody2D") as StaticBody2D
+		static_body.get_node("CollisionShape2D").set_deferred("disabled", false)

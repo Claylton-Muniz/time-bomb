@@ -186,5 +186,6 @@ animation = &"run"
 frame_progress = 0.710858
 script = ExtResource("2_5vj2o")
 
+[connection signal="area_shape_entered" from="." to="." method="_on_time_zone_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_time_zone_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_time_zone_body_exited"]

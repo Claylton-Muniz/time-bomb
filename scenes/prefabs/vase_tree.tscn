@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://bimk0reb4u3uw"]
+
+[ext_resource type="Texture2D" uid="uid://5s6lpmlg1qdt" path="res://assets/tile/itens/vaso.png" id="1_1f4ly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f4ly"]
+atlas = ExtResource("1_1f4ly")
+region = Rect2(0, 0, 512, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43oh2"]
+atlas = ExtResource("1_1f4ly")
+region = Rect2(512, 0, 512, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_43oh2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f4ly")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43oh2")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bjfx"]
+size = Vector2(21, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f4ly"]
+
+[node name="VaseTree" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.07, 0.07)
+sprite_frames = SubResource("SpriteFrames_43oh2")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_0bjfx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, -22)
+shape = SubResource("RectangleShape2D_1f4ly")
+disabled = true

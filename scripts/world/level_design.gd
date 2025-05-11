@@ -42,3 +42,10 @@ func _input(event: InputEvent) -> void:
 		else:
 			if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
 				print("Uma instância de TimeZone criada por este script já está ativa. Clique ignorado.")
+
+
+func _on_alavanca_body_entered(body: Node2D) -> void:
+	print(body.name)
+	
+	var alavanca = $Alavanca/Alavanca
+	alavanca.flip_v = true
